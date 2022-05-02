@@ -33,18 +33,17 @@ namespace BlogPessoal
         {
             if (env.IsDevelopment())
             {
-                context.Database.EnsureCreated();
+                context.Database.EnsureCreated(); // Cria o Banco de Dados caso não tenha
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

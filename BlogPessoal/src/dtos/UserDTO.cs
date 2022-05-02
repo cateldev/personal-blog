@@ -31,6 +31,12 @@ namespace BlogPessoal.src.dtos
         }
     }
 
+/// <summary>
+/// <para>Resumo: Classe espelho para atualizar um usuario</para>
+/// <para>Criado por: Kauane Farias</para>
+/// <para>Versão 1.0</para>
+/// <para>Data: 29/04/2022</para>
+/// </summary>
     public class UpdateUserDTO
     {
         [Required, StringLength(50)]
