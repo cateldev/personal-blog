@@ -17,7 +17,7 @@ namespace BlogPessoal.src.repositorios
     void DeleteUser(int id);
     UserModel TakeUserById(int id);
     UserModel TakeUserByEmail(string email);
-    UserModel TakeUserByName (string name);
+    List<UserModel> TakeUserByName (string name);
   }
   
 }

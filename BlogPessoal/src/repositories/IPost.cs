@@ -17,7 +17,7 @@ namespace BlogPessoal.src.repositorios
         void DeletePost(int id);
         PostsModel TakePostById(int id);
         List<PostsModel> TakeAllPosts();
-
+        
         List<PostsModel> TakePostBySearch(string title, string desciptionTheme, string nameCreator);
     }
 }

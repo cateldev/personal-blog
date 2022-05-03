@@ -39,6 +39,9 @@ namespace BlogPessoal.src.dtos
 /// </summary>
     public class UpdateUserDTO
     {
+        [Required]
+         public int Id { get; set; }
+         
         [Required, StringLength(50)]
         public string Name { get; set; }
 
@@ -48,11 +51,12 @@ namespace BlogPessoal.src.dtos
 
         public string Photo { get; set; }
 
-         public UpdateUserDTO(string name, string password, string photo)
+         public UpdateUserDTO(int id, string name, string password, string photo)
         {
             Name = name;
             Password = password;
             Photo = photo;
+            Id = id;
         }
     }
 }
