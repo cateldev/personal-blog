@@ -1,67 +1,69 @@
-using BlogPessoal.src.models;
-using BlogPessoal.src. dtos;
-using BlogPessoal.src.repositorios;
 using BlogPessoal.src.data;
-using System.Linq;
+using BlogPessoal.src.DTOS;
+using BlogPessoal.src.models;
+using BlogPessoal.src.repositorios;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlogPessoal.src.repositories.implementations
 {
   public class UserRepository : IUser
   {
-    #region Atributes
+    #region Attributes    
     private readonly BlogPessoalContext _context;
-    #endregion Atributes
+    #endregion
 
     #region Constructors
     public UserRepository(BlogPessoalContext context)
     {
-         _context = context;
+      _context = context;
     }
-    #endregion Constructors
+    #endregion
 
     #region Methods
-    public void DeleteUser(int id)
-    {
-      _context.Users.Remove(TakeUserById(id));
-      _context.SaveChanges();
-    }
-
-    public void NewUser(NewUserDTO user)
+    public void  NewUser(NewUserDTO userDTO)
     {
       _context.Users.Add(new UserModel
       {
-          Email = user.Email,
-          Name = user.Name,
-          Password = user.Password,
-          Photo = user.Photo
-      });
+        Email = userDTO.Email,
+        Name = userDTO.Name,
+        Password = userDTO.Password,
+        Photo = userDTO.Photo
+        });
+          _context.SaveChanges();
     }
-
-    public UserModel TakeUserByEmail(string email)
-    {
-      return _context.Users.FirstOrDefault(u => u.Email == email);
-    }
-    public UserModel TakeUserById(int id)
-    {
-      return _context.Users.FirstOrDefault(u => u.Id == id);
-    }
-
-    public List<UserModel> TakeUserByName(string name)
-    {
-        return _context.Users.Where(u => u.Name.Contains(name)).ToList();
-    }
-
     public void UpdateUser(UpdateUserDTO user)
     {
-      var UserExistance = TakeUserById(user.Id);
+      var UserExistance = GetUserById(user.Id);
       UserExistance.Name = user.Name;
       UserExistance.Password = user.Password;
       UserExistance.Photo = user.Photo;
       _context.Users.Update(UserExistance);
       _context.SaveChanges();
     }
-    
+    public void DeleteUser(int id)
+    {
+      _context.Users.Remove(GetUserById(id));
+      _context.SaveChanges();
+    }
+
+    public UserModel GetUserById(int id)
+    {
+      return _context.Users.FirstOrDefault(u => u.Id == id);
+    }
+
+    public UserModel GetUserByEmail(string email)
+    {
+      return _context.Users.FirstOrDefault(u => u.Email == email);
+    }
+
+    public List<UserModel> GetUserByName(string name)
+    {
+        return _context.Users.Where(u => u.Name.Contains(name)).ToList();
+    }
     #endregion Methods
   }
 }
+
+
+        

@@ -1,4 +1,4 @@
-using BlogPessoal.src.dtos;
+using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
 
@@ -16,8 +16,8 @@ namespace BlogPessoal.src.repositorios
         void NewTheme(NewThemeDTO theme);
         void UpdateTheme(UpdateThemeDTO theme);
         void DeleteTheme(int id);
-        ThemeModel TakeThemeById(int id);
-        List<ThemeModel> TakeThemeByDescription(string description);
+        ThemeModel GetThemeById(int id);
+        List<ThemeModel> GetThemeByDescription(string description);
     }
 
 }

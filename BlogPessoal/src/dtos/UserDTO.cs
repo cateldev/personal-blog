@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogPessoal.src.dtos
+namespace BlogPessoal.src.DTOS
 {
 
 ///<summary>
@@ -11,6 +11,7 @@ namespace BlogPessoal.src.dtos
 ///</summary>
     public class NewUserDTO
     {
+
         [Required, StringLength(50)]
         public string Name { get; set; }
 

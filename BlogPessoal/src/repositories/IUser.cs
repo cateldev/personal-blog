@@ -1,4 +1,4 @@
-using BlogPessoal.src.dtos;
+using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
 
@@ -15,9 +15,9 @@ namespace BlogPessoal.src.repositorios
     void NewUser(NewUserDTO newUser);
     void UpdateUser(UpdateUserDTO user);
     void DeleteUser(int id);
-    UserModel TakeUserById(int id);
-    UserModel TakeUserByEmail(string email);
-    List<UserModel> TakeUserByName (string name);
+    UserModel GetUserById(int id);
+    UserModel GetUserByEmail(string email);
+    List<UserModel> GetUserByName (string name);
   }
   
 }

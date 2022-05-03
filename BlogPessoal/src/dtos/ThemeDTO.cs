@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogPessoal.src.dtos
+namespace BlogPessoal.src.DTOS
 {
     /// <summary>
     /// <para>Resumo: Classe espelho para criar um novo tema</para>

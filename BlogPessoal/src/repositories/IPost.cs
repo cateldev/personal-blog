@@ -1,4 +1,4 @@
-using BlogPessoal.src.dtos;
+using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
 
@@ -15,9 +15,9 @@ namespace BlogPessoal.src.repositorios
         void NewPost(NewPostDTO post);
         void UpdatePost(UpdatePostDTO post);
         void DeletePost(int id);
-        PostsModel TakePostById(int id);
-        List<PostsModel> TakeAllPosts();
-        
-        List<PostsModel> TakePostBySearch(string title, string desciptionTheme, string nameCreator);
+        PostsModel GetPostById(int id);
+        List<PostsModel> GetAllPosts();
+        List<PostsModel> GetPostBySearch(string title, string description, string creator); 
     }
+
 }
