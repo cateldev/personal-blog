@@ -2,7 +2,7 @@ using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
 
-namespace BlogPessoal.src.repositorios
+namespace BlogPessoal.src.repositories
 {
   ///<summary>
   ///<para>Resumo: Responsável por representar ações de CRUD de usuário</para>
