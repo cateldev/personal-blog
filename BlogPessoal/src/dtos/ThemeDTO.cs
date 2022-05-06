@@ -10,11 +10,15 @@ namespace BlogPessoal.src.DTOS
     /// </summary>
     public class NewThemeDTO
     {
+        [Required]
+        public int Id { get; set; }
+
         [Required, StringLength(20)]
         public string Description { get; set; }
-        public NewThemeDTO(string description)
+        public NewThemeDTO(string description, int id)
         {
             Description = description;
+            Id = id;
         }
     }
 
@@ -26,11 +30,14 @@ namespace BlogPessoal.src.DTOS
     /// </summary>
     public class UpdateThemeDTO
     {
+        [Required]
+        public int Id { get; set; }
         [Required, StringLength(20)]
         public string Description { get; set; }
-        public UpdateThemeDTO(string description)
+        public UpdateThemeDTO(string description, int id)
         {
             Description = description;
+            Id = id;
         }
     }
 

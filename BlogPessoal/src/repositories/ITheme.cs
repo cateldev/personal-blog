@@ -11,13 +11,14 @@ namespace BlogPessoal.src.repositories
     ///<para>Data: 29/04/2022</para>
     ///</summary>
 
-    public interface ITema
+    public interface ITheme
     {
         void NewTheme(NewThemeDTO theme);
         void UpdateTheme(UpdateThemeDTO theme);
         void DeleteTheme(int id);
         ThemeModel GetThemeById(int id);
         List<ThemeModel> GetThemeByDescription(string description);
+        List<ThemeModel> GetAllThemes();
     }
 
 }

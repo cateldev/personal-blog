@@ -1,41 +1,64 @@
+using BlogPessoal.src.data;
 using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace BlogPessoal.src.repositorios
-public class ThemeRepository : ITheme
+namespace BlogPessoal.src.repositories
+{
+  public class ThemeRepository : ITheme
+  {
+    #region Attributes
+    private readonly BlogPessoalContext _context;
+
+    #endregion Attributes
+
+    #region Constructors
+    public ThemeRepository(BlogPessoalContext context)
     {
+      _context = context;
+    }
+    #endregion Constructors
 
-        #region Atributos
+    #region Method
 
-        private readonly BlogPessoalContext _context;
+    public void NewTheme(NewThemeDTO newThemeDTO)
+    {
+      _context.Themes.Add(new ThemeModel
+      { 
+        Description = newThemeDTO.Description
+      });
+       _context.SaveChanges();
+    }
 
-        #endregion Atributos
+    public void UpdateTheme(UpdateThemeDTO newTheme)
+    {
+      var ThemeExistance = GetThemeById(newTheme.Id);
+      ThemeExistance.Description = newTheme.Description;
+      _context.Themes.Update(ThemeExistance);
+      _context.SaveChanges();
+    }
 
-        #region Construtores
-        public ThemeRepository(PersonalBlogContext context)
-        {
-            _context = context;
-        }
+    public void DeleteTheme(int id)
+    {
+      _context.Themes.Remove(GetThemeById(id));
+      _context.SaveChanges();
+    }
 
-        #endregion Construtores
+    public ThemeModel GetThemeById(int id)
+    {
+      return _context.Themes.FirstOrDefault(u => u.Id == id);
+    }
 
-        #region Method
-        public void AddTheme(NewThemeDTO newTheme)
-        {
-            _context.Themes.Add(new ThemeModel
-            {
-                Description = newTheme.Description
+    public List<ThemeModel> GetAllThemes()
+    {
+      return _context.Themes.ToList();
+    }
 
-            });
-
-            _context.SaveChanges();
-        }
-
-        public void AttTheme(UpdateThemeDTO newTheme)
-        {
-            var existingTheme = GetThemeById(newTheme.Id);
-            existingTheme.Description = newTheme.Description;
-            _context.Themes.Update(existingTheme);
-            _context.SaveChanges();
+    public List<ThemeModel> GetThemeByDescription(string description)
+    {
+      return _context.Themes.ToList();
+    }
+    #endregion Methods
+  }
 }

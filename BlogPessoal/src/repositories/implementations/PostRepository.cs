@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using BlogPessoal.src.models;
 using BlogPessoal.src.data;
-using BlogPessoal.src.repositorios;
 using BlogPessoal.src.DTOS;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,16 +11,14 @@ namespace BlogPessoal.src.repositories.implementations
     {
         #region Attribute
         private readonly BlogPessoalContext _context;
-        #endregion
+        #endregion Attributes
 
-
-        #region Constructor
+        #region Constructors
         public PostRepository(BlogPessoalContext context)
         {
             _context = context;
         }
-        #endregion
-
+        #endregion Constructors
 
         #region Methods
         public void NewPost(NewPostDTO post)
@@ -120,6 +117,6 @@ namespace BlogPessoal.src.repositories.implementations
                         .ToList();
             }
         }       
-        #endregion
+        #endregion Methods
     }
 }

@@ -1,7 +1,7 @@
 using BlogPessoal.src.data;
 using BlogPessoal.src.DTOS;
 using BlogPessoal.src.models;
-using BlogPessoal.src.repositorios;
+using BlogPessoal.src.repositories;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,8 +29,8 @@ namespace BlogPessoal.src.repositories.implementations
         Name = userDTO.Name,
         Password = userDTO.Password,
         Photo = userDTO.Photo
-        });
-          _context.SaveChanges();
+      });
+        _context.SaveChanges();
     }
     public void UpdateUser(UpdateUserDTO user)
     {
