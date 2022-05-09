@@ -47,7 +47,7 @@ namespace BlogPessoal.src.controladores
             return NoContent();
         }
 
-        [HttpGet("id/{idPostagem}")]
+        [HttpGet("id/{idPost}")]
         public IActionResult GetPostById([FromRoute] int idPosts)
         {
             var posts = _repository.GetPostById(idPosts);

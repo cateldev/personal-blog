@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogPessoal.src.data;
+using BlogPessoal.src.repositories;
+using BlogPessoal.src.repositories.implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,22 +27,37 @@ namespace BlogPessoal
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-                services.AddDbContext<BlogPessoalContext>(opt=>opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<BlogPessoalContext>(opt=>opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
-                //Repositories
-                
+            //Repositories
+            services.AddScoped<IUser, UserRepository>();
+            services.AddScoped<ITheme, ThemeRepository>();
+            services.AddScoped<IPost, PostRepository>();
+
+            //Controllers
+            services.AddCors();
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlogPessoalContext context)
         {
+            //Development
             if (env.IsDevelopment())
             {
-                context.Database.EnsureCreated(); // Cria o Banco de Dados caso não tenha
+                context.Database.EnsureCreated(); // Create database if not existent
                 app.UseDeveloperExceptionPage();
             }
 
+            //Production Environment
+            //Routes
             app.UseRouting();
+
+            app.UseCors(c => c
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());     
 
             app.UseAuthorization();
 
