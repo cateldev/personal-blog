@@ -19,13 +19,16 @@ namespace BlogPessoal
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Context
             IConfigurationRoot config = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
                 services.AddDbContext<BlogPessoalContext>(opt=>opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-                services.AddControllers();
+
+                //Repositories
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
