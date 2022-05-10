@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using BlogPessoal.src.utilities;
 
 namespace BlogPessoal.src.DTOS
 {
@@ -23,12 +24,17 @@ namespace BlogPessoal.src.DTOS
 
         public string Photo { get; set; }
 
-        public NewUserDTO(string name, string email, string password, string photo)
+        [Required]
+        public UserType Type { get; set; }
+
+
+        public NewUserDTO(string name, string email, string password, string photo, UserType type)
         {
             Name = name;
             Email = email;
             Password = password;
             Photo = photo;
+            Type = type;
         }
     }
 
