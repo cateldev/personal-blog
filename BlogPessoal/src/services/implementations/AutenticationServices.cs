@@ -20,7 +20,7 @@ namespace BlogPessoal.src.servicos.implementations
           this.Configuration = configuration;
             
         }
-                public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
         #endregion Attributes
 
         #region Constructors

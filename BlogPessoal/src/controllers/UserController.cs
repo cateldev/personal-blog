@@ -27,6 +27,7 @@ namespace BlogPessoal.src.controllers
 
         #region Methods
         [HttpGet("id/{idUser}")]
+        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
         public IActionResult GetUserById([FromRoute] int idUser)
         {
            var user = _repository.GetUserById(idUser);
@@ -34,7 +35,8 @@ namespace BlogPessoal.src.controllers
            return Ok(user);
         }    
 
-        [HttpGet] 
+        [HttpGet]
+        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
         public IActionResult GetUserByName([FromQuery] string userName)
         {
             var users = _repository.GetUserByName(userName);
@@ -43,6 +45,7 @@ namespace BlogPessoal.src.controllers
         }
 
         [HttpGet("email/{emailUser}")]
+        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
         public IActionResult GetUserByEmail([FromRoute] string emailUser)
         {
            var user = _repository.GetUserByEmail(emailUser);
@@ -77,6 +80,7 @@ namespace BlogPessoal.src.controllers
         }
         
         [HttpDelete("delete/{idUser}")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult DeleteUser([FromRoute] int idUser)
         {
             _repository.DeleteUser(idUser);

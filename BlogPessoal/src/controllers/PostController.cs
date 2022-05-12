@@ -18,6 +18,7 @@ namespace BlogPessoal.src.controladores
         public PostsController(IPost repository)
         {
         _repository = repository;
+        
         }
         #endregion Constructors
 

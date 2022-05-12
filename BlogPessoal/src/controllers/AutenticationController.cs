@@ -4,20 +4,20 @@ using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlogPessoal.src.controladores
+namespace BlogPessoal.src.controllers
 {
     [ApiController]
-    [Route("api/Autenticacao")]
+    [Route("api/Authentication")]
     [Produces("application/json")]
 
-    public class AutenticationController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         #region Attributes
-        private readonly IAutentication _services;
+        private readonly IAuthentication _services;
         #endregion Attributes
 
         #region Constructors
-        public AutenticationController(IAutentication services)
+        public AuthenticationController(IAuthentication services)
         {
             _services = services;
         }
@@ -26,14 +26,16 @@ namespace BlogPessoal.src.controladores
         #region Methods
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Autenticate([FromBody] AutenticateDTO autentication)
+        public async Task<ActionResult> Authenticate([FromBody] AuthenticateDTO authentication)
         {
             if(!ModelState.IsValid) return BadRequest();
+
             try
             {
-                var autorization = _services.GetAutorization(autentication);
-                return Ok(autorization);
+                var authorization = _services.GetAuthorization(authentication);
+                return Ok(authorization);
             }
+
             catch (Exception ex)
             {
                 return Unauthorized(ex.Message);
