@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using BlogPessoal.src.DTOS;
 using BlogPessoal.src.repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPessoal.src.controladores
@@ -23,52 +25,58 @@ namespace BlogPessoal.src.controladores
 
         #region Métodos
         [HttpPost]
-        public IActionResult NewTheme([FromBody] NewThemeDTO theme)
+        [Authorize]
+        public async Task<ActionResult> NewThemeAsync([FromBody] NewThemeDTO theme)
         {
             if(!ModelState.IsValid) return BadRequest();
 
-            _repository.NewTheme(theme);
+            _repository.NewThemeAsync(theme);
 
             return Created($"api/Themes", theme);
         }
 
         [HttpPut]
-        public IActionResult UpdateTheme([FromBody] UpdateThemeDTO theme)
+        [Authorize(Roles = "ADMINISTRATOR")]
+        public async Task<ActionResult> UpdateTheme([FromBody] UpdateThemeDTO theme)
         {
             if(!ModelState.IsValid) return BadRequest();
-            _repository.UpdateTheme(theme);
+            _repository.UpdateThemeAsync(theme);
             return Ok(theme);
         }
 
         [HttpDelete("delete/{idTheme}")]
-        public IActionResult DeleteTheme([FromRoute] int idTheme)
+        [Authorize(Roles = "ADMINISTRATOR")]
+        public async Task<ActionResult> DeleteTheme([FromRoute] int idTheme)
         {
-             _repository.DeleteTheme(idTheme);
+             _repository.DeleteThemeAsync(idTheme);
             return NoContent();
         }
 
         [HttpGet]
-        public IActionResult GetAllThemes()
+        [Authorize]
+        public async Task<ActionResult> GetAllThemesAsync()
         {
-            var list = _repository.GetAllThemes();
+            var list = await _repository.GetAllThemesAsync();
             if (list.Count  < 1) return NoContent();
             return Ok(list);
         }
 
         [HttpGet("id/{idTheme}")]
-        public IActionResult GetThemeById([FromRoute] int idTheme)
+        [Authorize]
+        public async Task<ActionResult> GetThemeByIdAsync([FromRoute] int idTheme)
         {
 
-            var theme = _repository.GetThemeById(idTheme);
+            var theme = await _repository.GetThemeByIdAsync(idTheme);
             if (theme == null) return NotFound();
             return Ok(theme);
 
         }
 
         [HttpGet("search")]
-        public IActionResult GetThemeByDescription([FromQuery] string descriptionTheme)
+        [Authorize]
+        public async Task<ActionResult> GetThemeByDescriptionAsync([FromQuery] string descriptionTheme)
         {
-            var themes = _repository.GetThemeByDescription(descriptionTheme);
+            var themes = await _repository.GetThemeByDescriptionAsync(descriptionTheme);
              if (themes.Count < 1) return NoContent();
             return Ok(themes);
         }

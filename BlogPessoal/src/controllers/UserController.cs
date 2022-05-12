@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.controllers
 {
@@ -13,12 +14,12 @@ namespace BlogPessoal.src.controllers
     public class UserController : ControllerBase
     {
         #region Attributes
-        private readonly IAutentication _services;
+        private readonly IAuthentication _services;
         private readonly IUser _repository;
         #endregion Attributes
 
         #region Constructors
-        public UserController(IUser repository, IAutentication services)
+        public UserController(IUser repository, IAuthentication services)
         {
             _repository = repository;
             _services = services;
@@ -27,42 +28,43 @@ namespace BlogPessoal.src.controllers
 
         #region Methods
         [HttpGet("id/{idUser}")]
-        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
-        public IActionResult GetUserById([FromRoute] int idUser)
+        [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
+        public async Task<ActionResult> GetUserByIdAsync([FromRoute] int idUser)
         {
-           var user = _repository.GetUserById(idUser);
+           var user = await _repository.GetUserByIdAsync(idUser);
            if (user == null) return NotFound();
            return Ok(user);
         }    
 
         [HttpGet]
-        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
-        public IActionResult GetUserByName([FromQuery] string userName)
+        [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
+        public Task<ActionResult> GetUserByNameAsync([FromQuery] string userName)
         {
-            var users = _repository.GetUserByName(userName);
+            var users = await _repository.GetUserByNameAsync(userName);
             if (users.Count < 1) return NoContent();
             return Ok(users);
         }
 
         [HttpGet("email/{emailUser}")]
-        [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
-        public IActionResult GetUserByEmail([FromRoute] string emailUser)
+        [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
+        public async Task<ActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
         {
-           var user = _repository.GetUserByEmail(emailUser);
+           var user = await _repository.GetUserByEmailAsync(emailUser);
            if (user == null) return NotFound();
            return Ok(user);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult NewUser([FromBody] NewUserDTO user)
+        public async Task<ActionResult> NewUserAsync([FromBody] NewUserDTO user)
         {
             if(!ModelState.IsValid) return BadRequest();
             try
             {
-                _services.CreateUserNoDuplicate(user);
+                await _services.CreateUserNoDuplicateAsync(user);
                 return Created($"api/Usuarios/email/{user.Email}", user);
             }
+
             catch (Exception ex)
             {
                 return Unauthorized(ex.Message);
@@ -71,19 +73,19 @@ namespace BlogPessoal.src.controllers
 
         [HttpPut]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
-        public IActionResult UpdateUser([FromBody] UpdateUserDTO user)
+        public Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
-            user.Password = _services.CodifyPassword(user.Password);
-            _repository.UpdateUser(user);
+            user.Password = _services.EncodePassword(user.Password);
+            await _repository.UpdateUserAsync(user);
             return Ok(user);
         }
         
         [HttpDelete("delete/{idUser}")]
-        [Authorize(Roles = "ADMINISTRADOR")]
-        public IActionResult DeleteUser([FromRoute] int idUser)
+        [Authorize(Roles = "ADMINISTRATOR")]
+        public async Task<ActionResult> DeleteUserAsync([FromRoute] int idUser)
         {
-            _repository.DeleteUser(idUser);
+            await _repository.DeleteUserAsync(idUser);
             return NoContent();
         }
         #endregion Methods
