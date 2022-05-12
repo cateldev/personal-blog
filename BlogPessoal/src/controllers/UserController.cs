@@ -1,5 +1,5 @@
 using BlogPessoal.src.repositories;
-using BlogPessoal.src.DTOS;
+using BlogPessoal.src.dtos;
 using Microsoft.AspNetCore.Mvc;
 using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogPessoal.src.DTOS
+namespace BlogPessoal.src.dtos
 {
 
     /// <summary>

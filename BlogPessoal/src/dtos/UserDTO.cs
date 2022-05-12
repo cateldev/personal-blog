@@ -1,14 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using BlogPessoal.src.utilities;
 
-namespace BlogPessoal.src.DTOS
+namespace BlogPessoal.src.dtos
 {
 
 ///<summary>
-///<para>Resumo: Classe espelho para criar um novo usuário</para>
-///<para> Criado por: Gustavo Boaz</para>
-///<para>Versão: 1.0</para>
-///<para>Data: 29/04/2022</para>
+///<for>Briefing: Mirror Class to create a new user</for>
+///<for> Created by: Matheus Catel</for>
+///<for>Version: 1.0</for>
+///<for>Date: 29/04/2022</for>
 ///</summary>
     public class NewUserDTO
     {
@@ -38,12 +38,13 @@ namespace BlogPessoal.src.DTOS
         }
     }
 
-/// <summary>
-/// <para>Resumo: Classe espelho para atualizar um usuario</para>
-/// <para>Criado por: Kauane Farias</para>
-/// <para>Versão 1.0</para>
-/// <para>Data: 29/04/2022</para>
-/// </summary>
+    ///<summary>
+    ///<for>Briefing: Mirror Class to update user</for>
+    ///<for> Created by: Matheus Catel</for>
+    ///<for>Version: 1.0</for>
+    ///<for>Date: 29/04/2022</for>
+    ///</summary>
+    
     public class UpdateUserDTO
     {
         [Required]
