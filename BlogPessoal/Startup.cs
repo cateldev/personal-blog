@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using BlogPessoal.src.data;
 using BlogPessoal.src.repositories;
@@ -98,6 +100,11 @@ namespace BlogPessoal
                         new List<string>()
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+
 
             });
 

@@ -1,6 +1,7 @@
-using BlogPessoal.src.DTOS;
+using BlogPessoal.src.dtos;
 using BlogPessoal.src.models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositories
 {
@@ -12,12 +13,12 @@ namespace BlogPessoal.src.repositories
     /// </summary>
     public interface IPost
     {
-        void NewPost(NewPostDTO post);
-        void UpdatePost(UpdatePostDTO post);
-        void DeletePost(int id);
-        PostsModel GetPostById(int id);
-        List<PostsModel> GetAllPosts();
-        List<PostsModel> GetPostBySearch(string title, string description, string creator); 
+        Task<List<PostsModel>> GetAllPostsAsync();
+        Task<PostsModel> GetPostByIdAsync(int id);
+        Task<List<PostsModel>> GetPostBySearchAsync(string title, string descriptionTheme, string creator);
+        Task NewPostAsync(NewPostDTO post);
+        Task UpdatePostAsync(UpdatePostDTO post);
+        Task DeletarPostagemAsync(int id);
     }
 
 }
