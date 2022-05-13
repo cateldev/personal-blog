@@ -29,7 +29,7 @@ namespace BlogPessoal.src.models
         public UserType Type { get; set; }
 
 
-        [JsonIgnore]
+        [JsonIgnore, InverseProperty("Creator")]
         public List<PostsModel> MyPosts { get; set; }
   	}
 }

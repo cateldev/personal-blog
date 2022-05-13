@@ -44,7 +44,7 @@ namespace BlogPessoal.src.dtos
     ///<for>Version: 1.0</for>
     ///<for>Date: 29/04/2022</for>
     ///</summary>
-    
+
     public class UpdateUserDTO
     {
         [Required]
@@ -61,10 +61,10 @@ namespace BlogPessoal.src.dtos
 
          public UpdateUserDTO(int id, string name, string password, string photo)
         {
+            Id = id;
             Name = name;
             Password = password;
             Photo = photo;
-            Id = id;
         }
     }
 }

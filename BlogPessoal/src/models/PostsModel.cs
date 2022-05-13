@@ -18,10 +18,10 @@ namespace BlogPessoal.src.models
 
         public string Photo { get; set; }
 
-        [ForeignKey("fk_user")]
+        [ForeignKey("fk_user"), InverseProperty("MinhasPostagens")]
         public UserModel Creator { get; set; }
 
-        [ForeignKey("fk_theme")]
+        [ForeignKey("fk_theme"), InverseProperty("PostagensRelacionadas")]
         public ThemeModel Theme { get; set; }
 
     }

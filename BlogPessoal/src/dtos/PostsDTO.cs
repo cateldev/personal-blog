@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 namespace BlogPessoal.src.dtos
 {
 
-    /// <summary>
-    /// DTO for create a new post
-    /// <para> Author: Rodrigo Franca </para>
-    /// <para> Version: 1.0 </para>
-    /// <para> Date: 29/04/2022 </para>
-    /// </summary>
+    ///<summary>
+    ///<for>Briefing: Mirror Class to create a new post</for>
+    ///<for> Created by: Matheus Catel</for>
+    ///<for>Version: 1.0</for>
+    ///<for>Date: 29/04/2022</for>
+    ///</summary>
+
     public class NewPostDTO
     {
         public NewPostDTO(string title, string description, string photo, string creatorEmail, string themeDescription)
@@ -36,12 +37,13 @@ namespace BlogPessoal.src.dtos
 
     }
 
-    /// <summary>
-    /// DTO for update a post
-    /// <para> Author: Rodrigo Franca </para>
-    /// <para> Version: 1.0 </para>
-    /// <para> Date: 29/04/2022 </para>
-    /// </summary>
+    ///<summary>
+    ///<for>Briefing: Mirror Class to update a new post</for>
+    ///<for> Created by: Matheus Catel</for>
+    ///<for>Version: 1.0</for>
+    ///<for>Date: 29/04/2022</for>
+    ///</summary>
+    
     public class UpdatePostDTO
     {
         public UpdatePostDTO(string title, string description, string photo, string themeDescription)
