@@ -49,7 +49,7 @@ namespace BlogPessoal.src.repositories
 
     public async Task<ThemeModel> GetThemeByIdAsync(int id)
     {
-      return await _context.Themes.FirstOrDefault(u => u.Id == id);
+      return await _context.Themes.FirstOrDefault(t => t.Id == id);
     }
 
     public async Task<List<ThemeModel>> GetAllThemesAsync()

@@ -38,7 +38,7 @@ namespace BlogPessoal.src.controllers
 
         [HttpGet]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
-        public Task<ActionResult> GetUserByNameAsync([FromQuery] string userName)
+        public async Task<ActionResult> GetUserByNameAsync([FromQuery] string userName)
         {
             var users = await _repository.GetUserByNameAsync(userName);
             if (users.Count < 1) return NoContent();
@@ -73,7 +73,7 @@ namespace BlogPessoal.src.controllers
 
         [HttpPut]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
-        public Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
+        public async Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
             user.Password = _services.EncodePassword(user.Password);

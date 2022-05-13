@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BlogPessoal.src.DTOS;
+using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

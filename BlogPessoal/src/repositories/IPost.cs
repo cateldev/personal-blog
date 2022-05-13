@@ -18,7 +18,7 @@ namespace BlogPessoal.src.repositories
         Task<List<PostsModel>> GetPostBySearchAsync(string title, string descriptionTheme, string creator);
         Task NewPostAsync(NewPostDTO post);
         Task UpdatePostAsync(UpdatePostDTO post);
-        Task DeletarPostagemAsync(int id);
+        Task DeletePostAsync(int id);
     }
 
 }

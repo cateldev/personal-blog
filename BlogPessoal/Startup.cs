@@ -50,7 +50,7 @@ namespace BlogPessoal
             services.AddControllers();
 
             // Services Configuration
-            services.AddScoped<IAutentication, AutenticationServices>();
+            services.AddScoped<IAuthentication, AuthenticationServices>();
 
             // Configuração do Token Autenticação JWTBearer
             var key = Encoding.ASCII.GetBytes(Configuration["Settings:Secret"]);

@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BlogPessoal.src.DTOS;
+using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +30,7 @@ namespace BlogPessoal.src.controladores
         {
             if(!ModelState.IsValid) return BadRequest();
 
-            _repository.NewThemeAsync(theme);
+            await _repository.NewThemeAsync(theme);
 
             return Created($"api/Themes", theme);
         }
@@ -40,7 +40,7 @@ namespace BlogPessoal.src.controladores
         public async Task<ActionResult> UpdateTheme([FromBody] UpdateThemeDTO theme)
         {
             if(!ModelState.IsValid) return BadRequest();
-            _repository.UpdateThemeAsync(theme);
+            await _repository.UpdateThemeAsync(theme);
             return Ok(theme);
         }
 
@@ -48,7 +48,7 @@ namespace BlogPessoal.src.controladores
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> DeleteTheme([FromRoute] int idTheme)
         {
-             _repository.DeleteThemeAsync(idTheme);
+            await _repository.DeleteThemeAsync(idTheme);
             return NoContent();
         }
 

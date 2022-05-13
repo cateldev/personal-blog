@@ -1,5 +1,6 @@
 using System;
-using BlogPessoal.src.DTOS;
+using System.Threading.Tasks;
+using BlogPessoal.src.dtos;
 using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,7 @@ namespace BlogPessoal.src.controllers
 
             try
             {
-                var authorization = _services.GetAuthorization(authentication);
+                var authorization = await _services.GetAuthorizationAsync(authentication);
                 return Ok(authorization);
             }
 
