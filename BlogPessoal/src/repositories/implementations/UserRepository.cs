@@ -1,9 +1,10 @@
 using BlogPessoal.src.data;
-using BlogPessoal.src.DTOS;
+using BlogPessoal.src.dtos;
 using BlogPessoal.src.models;
-using BlogPessoal.src.repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositories.implementations
 {
@@ -21,45 +22,49 @@ namespace BlogPessoal.src.repositories.implementations
     #endregion
 
     #region Methods
-    public void  NewUser(NewUserDTO userDTO)
+    public async Task NewUserAsync(NewUserDTO user)
     {
-      _context.Users.Add(new UserModel
+      await _context.Users.AddAsync(new UserModel
       {
-        Email = userDTO.Email,
-        Name = userDTO.Name,
-        Password = userDTO.Password,
-        Photo = userDTO.Photo
+        Email = user.Email,
+        Name = user.Name,
+        Password = user.Password,
+        Photo = user.Photo,
+        Type = user.Type
       });
-        _context.SaveChanges();
+
+        await _context.SaveChangesAsync();
     }
-    public void UpdateUser(UpdateUserDTO user)
+    public async Task UpdateUserAsync(UpdateUserDTO user)
     {
-      var UserExistance = GetUserById(user.Id);
+      var UserExistance = await GetUserByIdAsync(user.Id);
       UserExistance.Name = user.Name;
       UserExistance.Password = user.Password;
       UserExistance.Photo = user.Photo;
       _context.Users.Update(UserExistance);
-      _context.SaveChanges();
+      await _context.SaveChangesAsync();
     }
-    public void DeleteUser(int id)
+    public async Task DeleteUserAsync(int id)
     {
-      _context.Users.Remove(GetUserById(id));
-      _context.SaveChanges();
-    }
-
-    public UserModel GetUserById(int id)
-    {
-      return _context.Users.FirstOrDefault(u => u.Id == id);
+      _context.Users.Remove(await GetUserByIdAsync(id));
+      await _context.SaveChangesAsync();
     }
 
-    public UserModel GetUserByEmail(string email)
+    public async Task<UserModel> GetUserByIdAsync(int id)
     {
-      return _context.Users.FirstOrDefault(u => u.Email == email);
+      return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
 
-    public List<UserModel> GetUserByName(string name)
+    public async Task<List<UserModel>> GetUserByNameAsync(string nome)
     {
-        return _context.Users.Where(u => u.Name.Contains(name)).ToList();
+      return await _context.Users 
+                        .Where(u => u.Name.Contains(nome))
+                        .ToListAsync();
+    }
+
+    public async Task<UserModel> GetUserByEmailAsync(string email)
+    {
+      return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
     #endregion Methods
   }
