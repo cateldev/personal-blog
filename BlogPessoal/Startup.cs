@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace BlogPessoal
 {
@@ -65,8 +66,14 @@ namespace BlogPessoal
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
-            }
-            );
+            });
+
+            //Swagger Configuration
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog Pessoal", Version = "v1" });
+            });
+
           
         }
 
@@ -78,6 +85,9 @@ namespace BlogPessoal
             {
                 context.Database.EnsureCreated(); // Create database if not existent
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1"));
+
             }
 
             //Production Environment

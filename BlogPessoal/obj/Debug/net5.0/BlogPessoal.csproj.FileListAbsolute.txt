@@ -53,3 +53,4 @@ C:\Users\Matheus Catel\Desktop\Coding\GENERATION\EXERCICES\BPVSC\BlogPessoal\Blo
 C:\Users\Matheus Catel\Desktop\Coding\GENERATION\EXERCICES\BPVSC\BlogPessoal\BlogPessoal\obj\Debug\net5.0\BlogPessoal.pdb
 C:\Users\Matheus Catel\Desktop\Coding\GENERATION\EXERCICES\BPVSC\BlogPessoal\BlogPessoal\obj\Debug\net5.0\BlogPessoal.genruntimeconfig.cache
 C:\Users\Matheus Catel\Desktop\Coding\GENERATION\EXERCICES\BPVSC\BlogPessoal\BlogPessoal\obj\Debug\net5.0\ref\BlogPessoal.dll
+C:\Users\Matheus Catel\Desktop\Coding\GENERATION\EXERCICES\BPVSC\BlogPessoal\BlogPessoal\obj\Debug\net5.0\BlogPessoal.MvcApplicationPartsAssemblyInfo.cs
