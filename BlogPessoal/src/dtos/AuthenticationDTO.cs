@@ -3,6 +3,14 @@ using BlogPessoal.src.utilities;
 
 namespace BlogPessoal.src.dtos
 {
+
+    /// <summary>
+    /// <para>Resume: Mirror class responsible for transporting login information</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-05-13</para>
+    /// </summary>
+
     public class AuthenticateDTO
     {
         [Required]
@@ -18,6 +26,14 @@ namespace BlogPessoal.src.dtos
         }   
 
     }
+
+    /// <summary>
+    /// <para>Resume: Mirror class responsible for transporting the Authorization data</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-05-13</para>
+    /// </summary>
+
         public class AuthorizationDTO
         {
             public int Id { get; set; }
