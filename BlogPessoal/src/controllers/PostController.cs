@@ -13,15 +13,18 @@ namespace BlogPessoal.src.controladores
     {
 
         #region Attributes
+
         private readonly IPost _repository;
+
         #endregion Attributes
 
         #region Constructors
+
         public PostsController(IPost repository)
         {
         _repository = repository;
-        
         }
+
         #endregion Constructors
 
         #region Methods
@@ -59,7 +62,7 @@ namespace BlogPessoal.src.controladores
         /// <summary>
         /// Update post
         /// </summary>
-        /// <param name="post">PostRegisterDTO</param>
+        /// <param name="post">NewPostDTO</param>
         /// <returns>IActionResult</returns>
         /// <remarks>
         /// Sample request:
@@ -69,7 +72,7 @@ namespace BlogPessoal.src.controladores
         ///        "title": "C# in 2022",
         ///        "description": "C# in 2022 is the future of programming",
         ///        "descriptionTheme": "C#",
-        ///        "emailUser": "gustavo@email.com"
+        ///        "emailUser": "catel@email.com"
         ///     }
         ///
         /// </remarks>

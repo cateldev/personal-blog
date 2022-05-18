@@ -27,6 +27,15 @@ namespace BlogPessoal.src.controllers
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// Get a user by id
+        /// </summary>
+        /// <param name="idUser">int</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="200">Returns the user</response>
+        /// <response code="404">User not found</response>
+
         [HttpGet("id/{idUser}")]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
         public async Task<ActionResult> GetUserByIdAsync([FromRoute] int idUser)
@@ -35,6 +44,14 @@ namespace BlogPessoal.src.controllers
            if (user == null) return NotFound();
            return Ok(user);
         }    
+
+        /// <summary>
+        /// Get a users by name
+        /// </summary>
+        /// <param name="userName">string</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="200">Returns the list users</response>
+        /// <response code="204">Users not found</response>
 
         [HttpGet]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
@@ -45,6 +62,14 @@ namespace BlogPessoal.src.controllers
             return Ok(users);
         }
 
+        /// <summary>
+        /// Get a users by email
+        /// </summary>
+        /// <param name="emailUser">string</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="200">Returns the list users</response>
+        /// <response code="204">Users not found</response>
+
         [HttpGet("email/{emailUser}")]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
         public async Task<ActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
@@ -53,6 +78,28 @@ namespace BlogPessoal.src.controllers
            if (user == null) return NotFound();
            return Ok(user);
         }
+
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="user">NewUserDTO</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /api/User
+        ///     {
+        ///        "name": "Matheus Catel",
+        ///        "email": "catel@domain.com",
+        ///        "password": "12345",
+        ///        "photo": "URLPHOTO",
+        ///        "role": "ADMINISTRATOR"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="201">Returns the newly created user</response>
+        /// <response code="400">Error in request</response>
+        /// <response code="401">Exist user email in database</response>
 
         [HttpPost]
         [AllowAnonymous]
@@ -71,6 +118,28 @@ namespace BlogPessoal.src.controllers
             }
         }
 
+        /// <summary>
+        /// Update a user
+        /// </summary>
+        /// <param name="user">UpdateUserDTO</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT /api/User
+        ///     {
+        ///        "id": 1,    
+        ///        "name": "Matheus Catel",
+        ///        "password": "12345",
+        ///        "photo": "URLPHOTO"
+        ///        "role": "ADMINISTRATOR"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="200">User updated</response>
+        /// <response code="400">Error in request</response>
+        /// <response code="404">User not found</response>
+
         [HttpPut]
         [Authorize(Roles = "NORMAL,ADMINISTRATOR")]
         public async Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
@@ -80,6 +149,14 @@ namespace BlogPessoal.src.controllers
             await _repository.UpdateUserAsync(user);
             return Ok(user);
         }
+
+        /// <summary>
+        /// Delete a user by id
+        /// </summary>
+        /// <param name="idUser">int</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="200">User deleted</response>
+        /// <response code="404">User not found</response>
         
         [HttpDelete("delete/{idUser}")]
         [Authorize(Roles = "ADMINISTRATOR")]

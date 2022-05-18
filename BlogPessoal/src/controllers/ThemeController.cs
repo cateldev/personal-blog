@@ -33,7 +33,7 @@ namespace BlogPessoal.src.controladores
         /// <summary>
         /// Create a new theme
         /// </summary>
-        /// <param name="theme">ThemeRegisterDTO</param>
+        /// <param name="theme">NewThemeDTO</param>
         /// <returns>IActionResult</returns>
         /// <remarks>
         /// Sample request:
@@ -61,7 +61,7 @@ namespace BlogPessoal.src.controladores
         /// <summary>
         /// Update theme by id
         /// </summary>
-        /// <param name="theme">ThemeRegisterDTO</param>
+        /// <param name="theme">UpdateThemeDTO</param>
         /// <returns>IActionResult</returns>
         /// <remarks>
         /// Sample request:
