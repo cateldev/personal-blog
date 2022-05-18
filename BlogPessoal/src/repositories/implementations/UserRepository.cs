@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositories.implementations
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for implement methos CRUD Users.</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-05-02</para>
+    /// </summary>
+
   public class UserRepository : IUser
   {
     #region Attributes    
@@ -15,6 +22,12 @@ namespace BlogPessoal.src.repositories.implementations
     #endregion
 
     #region Constructors
+
+    /// <summary>
+    /// <para>Resume: Constructor of class.</para>
+    /// </summary>
+    /// <param name="context">AppBlogContext</param>
+
     public UserRepository(BlogPessoalContext context)
     {
       _context = context;
@@ -22,6 +35,12 @@ namespace BlogPessoal.src.repositories.implementations
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// <para>Resume: method for add a new user.</para>
+    /// </summary>
+    /// <param name="user">UserRegisterDTO</param>
+
     public async Task NewUserAsync(NewUserDTO user)
     {
       await _context.Users.AddAsync(new UserModel
@@ -35,6 +54,12 @@ namespace BlogPessoal.src.repositories.implementations
 
         await _context.SaveChangesAsync();
     }
+
+    /// <summary>
+    /// <para>Resume: method for update am existent user.</para>
+    /// </summary>
+    /// <param name="user">UpdateUserDTO</param>
+
     public async Task UpdateUserAsync(UpdateUserDTO user)
     {
       var UserExistance = await GetUserByIdAsync(user.Id);
@@ -44,16 +69,34 @@ namespace BlogPessoal.src.repositories.implementations
       _context.Users.Update(UserExistance);
       await _context.SaveChangesAsync();
     }
+
+    /// <summary>
+    /// <para>Resume: method for delete a existent user.</para>
+    /// </summary>
+    /// <param name="id">Id of user</param>
+
     public async Task DeleteUserAsync(int id)
     {
       _context.Users.Remove(await GetUserByIdAsync(id));
       await _context.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// <para>Resume: method for get user by id.</para>
+    /// </summary>
+    /// <param name="id">Id of user</param>
+    /// <returns>UserModel</returns>
+
     public async Task<UserModel> GetUserByIdAsync(int id)
     {
       return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
+
+    /// <summary>
+    /// <para>Resume: method for get user by name.</para>
+    /// </summary>
+    /// <param name="name">Name of user</param>
+    /// <returns>List of UserModel</returns>
 
     public async Task<List<UserModel>> GetUserByNameAsync(string nome)
     {
@@ -62,10 +105,17 @@ namespace BlogPessoal.src.repositories.implementations
                         .ToListAsync();
     }
 
+    /// <summary>
+    /// <para>Resume: method for get user by email.</para>
+    /// </summary>
+    /// <param name="email">Email of user</param>
+    /// <returns>UserModel</returns>
+
     public async Task<UserModel> GetUserByEmailAsync(string email)
     {
       return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
+    
     #endregion Methods
   }
 }
