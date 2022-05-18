@@ -8,20 +8,38 @@ using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositories.implementations
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for implement methos CRUD Post.</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-04-29</para>
+    /// </summary>
+
     public class PostRepository : IPost
     {
         #region Attribute
+
         private readonly BlogPessoalContext _context;
+
         #endregion Attributes
 
         #region Constructors
+        
         public PostRepository(BlogPessoalContext context)
         {
             _context = context;
         }
+
         #endregion Constructors
 
         #region Methods
+
+        /// <summary>
+        /// <para>Resume: method for add new post.</para>
+        /// </summary>
+        /// <param name="post">PostRegisterDTO</param>
+        /// <returns>PostModel</returns>
+
         public async Task NewPostAsync(NewPostDTO post)
         {
             await _context.Posts.AddAsync(new PostsModel
@@ -35,6 +53,12 @@ namespace BlogPessoal.src.repositories.implementations
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: method for update existent post.</para>
+        /// </summary>
+        /// <param name="post">PostUpdateDTO</param>
+        /// <returns>PostModel</returns>
+
         public async Task UpdatePostAsync(UpdatePostDTO post)
         {
             var postExistance = await GetPostByIdAsync(post.Id);
@@ -47,11 +71,21 @@ namespace BlogPessoal.src.repositories.implementations
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: method for delete existent post.</para>
+        /// </summary>
+        /// <param name="id">Id of post</param>
+
         public async Task DeletePostAsync(int id)
         {
             _context.Posts.Remove(await GetPostByIdAsync(id));
             await _context.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// <para>Resume: method for get all posts.</para>
+        /// </summary>
+        /// <returns>List of PostsModel</returns>
 
         public async Task<List<PostsModel>> GetAllPostsAsync()
         {
@@ -61,6 +95,12 @@ namespace BlogPessoal.src.repositories.implementations
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: method for get post by id.</para>
+        /// </summary>
+        /// <param name="id">Id of post</param>
+        /// <returns>PostModel</returns>
+
         public async Task<PostsModel> GetPostByIdAsync(int id)
         {
             return await _context.Posts
@@ -68,6 +108,14 @@ namespace BlogPessoal.src.repositories.implementations
                 .Include(p => p.Theme)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        /// <summary>
+        /// <para>Resume: Query method for get posts by title or description theme and name creator</para>
+        /// </summary>
+        /// <param name="title">Title of post</param>
+        /// <param name="description">Theme of post</param>
+        /// <param name="creator">Creator of post</param>
+        /// <returns>List of PostModel</returns>
 
         public  async Task<List<PostsModel>> GetPostBySearchAsync(string title, string description, string creator)
         {
