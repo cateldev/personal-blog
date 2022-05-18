@@ -7,6 +7,13 @@ using BlogPessoal.src.utilities;
 
 namespace BlogPessoal.src.models
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for representing a users in the database.</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-04-29</para>
+    /// </summary>
+
 	[Table("tb_users")]
 	public class UserModel
 	{
