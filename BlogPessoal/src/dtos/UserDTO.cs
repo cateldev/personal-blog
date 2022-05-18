@@ -4,12 +4,12 @@ using BlogPessoal.src.utilities;
 namespace BlogPessoal.src.dtos
 {
 
-///<summary>
-///<for>Briefing: Mirror Class to create a new user</for>
-///<for> Created by: Matheus Catel</for>
-///<for>Version: 1.0</for>
-///<for>Date: 29/04/2022</for>
-///</summary>
+    /// <summary>
+    /// <para>Resume: Mirror class responsible for registering a new user</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-04-29</para>
+    /// </summary>
     public class NewUserDTO
     {
 
@@ -38,12 +38,12 @@ namespace BlogPessoal.src.dtos
         }
     }
 
-    ///<summary>
-    ///<for>Briefing: Mirror Class to update user</for>
-    ///<for> Created by: Matheus Catel</for>
-    ///<for>Version: 1.0</for>
-    ///<for>Date: 29/04/2022</for>
-    ///</summary>
+    /// <summary>
+    /// <para>Resume: Mirror class responsible for transporting a user to update</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-04-29</para>
+    /// </summary>
 
     public class UpdateUserDTO
     {
