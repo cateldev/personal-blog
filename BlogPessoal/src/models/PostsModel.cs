@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogPessoal.src.models
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for representing a posts in the database.</para>
+    /// <para>Created by: Matheus Catel</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 2022-04-29</para>
+    /// </summary>
+
     [Table("tb_posts")]
     public class PostsModel
     {
