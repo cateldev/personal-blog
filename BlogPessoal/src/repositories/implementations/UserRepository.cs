@@ -98,10 +98,10 @@ namespace BlogPessoal.src.repositories.implementations
     /// <param name="name">Name of user</param>
     /// <returns>List of UserModel</returns>
 
-    public async Task<List<UserModel>> GetUserByNameAsync(string nome)
+    public async Task<List<UserModel>> GetUserByNameAsync(string name)
     {
       return await _context.Users 
-                        .Where(u => u.Name.Contains(nome))
+                        .Where(u => u.Name.Contains(name))
                         .ToListAsync();
     }
 
